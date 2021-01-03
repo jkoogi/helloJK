@@ -2,6 +2,7 @@
  Ctrl + W : 파일 닫기
  Ctrl + I : 들여쓰기 자동수정
  Ctrl + T : hierarchy 팝업 창 띄우기(인터페이스 구현 클래스간 이동 시 편리)
+ Ctrl + Right(Left) : 다음(이전) 단어이동
  F4 : hierachy view 퍼스펙티브 생성
 *Ctrl + E : 페이지 이동(Ctrl + pgUp/pgDn)
 *Ctrl + Q : 마지막 편집 위치로 이동
@@ -39,6 +40,7 @@
  Ctrl + W : 파일 닫기
  Ctrl + I : 들여쓰기 자동수정
  Ctrl + T : hierarchy 팝업 창 띄우기(인터페이스 구현 클래스간 이동 시 편리)
+ Ctrl + Right(Left) : 다음(이전) 단어이동
  F4 : hierachy view 퍼스펙티브 생성
 *Ctrl + E : 페이지 이동(Ctrl + pgUp/pgDn)
 *Ctrl + Q : 마지막 편집 위치로 이동
