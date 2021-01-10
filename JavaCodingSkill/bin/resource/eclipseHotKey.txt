@@ -27,6 +27,7 @@
 *Alt + <-(->) : 이전(다음) 작업 화면
  Alt + Shift + Z : 코드 블럭 지정된 코드 후 해당 키 입력으로 코드 추가 - Surround With 메뉴
  Alt + Shift + X : 실행 단축키 보기
+ Alt + Shift + Y : 편집창 기준 줄바꿈 
  (Ctrl)+ Shift + Enter : (윗)아래줄 추가, 커서이동
  F12 : 에디터로 포커스 위치
  F11 or Ctrl + F11 : 최근 실행한 Run 실행
