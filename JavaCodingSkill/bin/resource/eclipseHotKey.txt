@@ -37,6 +37,8 @@
 
 --------------------------------------
 
+
+ Ctrl + -,+ : 편집창 블럭 접기, 펼치기 
  Ctrl + M : 전체화면 토글
  Ctrl + W : 파일 닫기
  Ctrl + I : 들여쓰기 자동수정
@@ -58,7 +60,10 @@
  Ctrl +(Shift) + F7 : 다음(이전) 뷰 전환
  Ctrl + F8 : 퍼스펙티브간 전환
  Ctrl + F3 : 클래스 아웃라인
- Ctrl + Shift + Space : 메소드의 파라미터 목록 보기
+ Ctrl + F4 : 활성 탭 닫기
+ Ctrl + Shift + Delete : 커서부터 줄끝까지 삭제
+*Ctrl + Shift + Space : 메소드의 파라미터 목록 보기
+*Ctrl + Shift + G : 메써드나 필드를 참조 하고 있는 곳
  Ctrl + Shift + O : 자동 import 
  Ctrl + Shift + M : 특정 클래스 Import 
  Ctrl + Shift + S : 모두 저장
@@ -72,16 +77,17 @@
  Ctrl + Shift + L : 주석팝업
  F3 : 클래스, 메소드 이동
  Ctrl + 방향키 위(아래) : 다음(이전)편집창 이동
-*Ctrl + Shift + Space : 메소드의 파라미터 목록 보기
-*Ctrl + Shift + G : 메써드나 필드를 참조 하고 있는 곳
  Alt + Shift + 방향키 위, 아래 : 단어 > 블록선택(확장선택, 확장해제)
 *Alt + <-(->) : 이전(다음) 작업 화면
  Alt + Up(Down) : 현재 줄 이동(위)
- Alt + Shift + A : 세로방향 블럭주석
+ Alt + Shift + A : 세로방향 블럭주석 (동작?)
 *Alt + Shift + R : 클래스, 메소드 리네임
  Alt + Shift + Z : 코드 블럭 지정된 코드 후 해당 키 입력으로 코드 추가 - Surround With 메뉴
  Alt + Shift + X : 실행 단축키 보기
  Alt + Shift + J : javadoc 주석
+ Alt + - : 편집창에서 텝 팝업메뉴 표시
+ Alt + / : 편집창에서 단어의 끝까지 복사(ab_cde > abcdecde)
+ Shift + F10 : 메뉴, 팝업메뉴, 취소 토글
  (Ctrl)+ Shift + Enter : (윗)아래줄 추가, 커서이동
  F12 : 에디터로 포커스 위치
  F11 or Ctrl + F11 : 최근 실행한 Run 실행
