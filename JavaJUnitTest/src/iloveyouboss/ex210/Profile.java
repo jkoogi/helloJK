@@ -9,7 +9,7 @@ import iloveyouboss.ex210.sub.Criterion;
 import iloveyouboss.ex210.sub.Weight;
 
 public class Profile {
-	
+
 	private Map<String, Answer> answers = new HashMap<>();
 	private int score;
 	private String name;
