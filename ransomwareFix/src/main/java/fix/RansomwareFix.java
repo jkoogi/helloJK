@@ -5,16 +5,34 @@ import java.io.FilenameFilter;
 
 public class RansomwareFix {
 
-	private static final String baseDirPath = "D:\\dev\\_log\\_ransomewareTest\\WD";
-	private static final String rescueDirPath = "D:\\dev\\_log\\_ransomewareTest\\rescue\\restore1\\share\\CACHEDEV1_DATA";
-	private static final String README_FILE = "!!!READ_ME.txt";
-	private static final String EXTENTION = ".7z";
+	private static String DIR_PATH_BASE = "/share/CACHEDEV1_DATA";
+	private static String DIR_PATH_RESCUE = "/share/rescue/restore1/share/CACHEDEV1_DATA";
+	private static String EXTENTION = ".7z";
+	private static String README_FILE = "!!!READ_ME.txt";
 	
 	public static void main(String[] args) {
 		
-		System.out.println("RansomwareFix");
-		File baseDir = new File(baseDirPath);
+		System.out.println("### RansomwareFix START ###");
+		
+		if(args.length > 2 ) {
+			
+			System.out.println("param set...");
+			
+			DIR_PATH_BASE = args[0];
+			DIR_PATH_RESCUE = args[1];
+			if(args.length > 3) {
+				EXTENTION = args[2];
+			}
+		}
+		
+		System.out.println(" - DIR_PATH_BASE : "+DIR_PATH_BASE);
+		System.out.println(" - DIR_PATH_RESCUE : "+DIR_PATH_RESCUE);
+		System.out.println(" - EXTENTION : "+EXTENTION);
+		
+		File baseDir = new File(DIR_PATH_BASE);
 		showFilesInDirRecursive(baseDir.getPath());
+		
+		System.out.println("### RansomwareFix END ###");
 	}
 
 	// 디렉토리 탐색
@@ -55,7 +73,7 @@ public class RansomwareFix {
 		
 		String fileName = file.getName().substring(0,file.getName().length()-EXTENTION.length());
 		String parantPath = file.getParentFile().toString();
-		String rescuePath = parantPath.replace(baseDirPath, rescueDirPath);
+		String rescuePath = parantPath.replace(DIR_PATH_BASE, DIR_PATH_RESCUE);
 		
 		File rescueFile = new File(rescuePath+"/"+fileName);
 		return rescueFile;
