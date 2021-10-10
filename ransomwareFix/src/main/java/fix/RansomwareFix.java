@@ -1,7 +1,6 @@
 package main.java.fix;
 
 import java.io.File;
-import java.io.FileFilter;
 import java.io.FilenameFilter;
 
 public class RansomwareFix {
@@ -15,12 +14,10 @@ public class RansomwareFix {
 		
 		System.out.println("RansomwareFix");
 		File baseDir = new File(baseDirPath);
-		System.out.println("5. 재귀용법 필터 표시");
 		showFilesInDirRecursive(baseDir.getPath());
 	}
 
 	// 디렉토리 탐색
-	@SuppressWarnings("unused")
 	private static void showFilesInDirRecursive(String path) {
 		
 		File dir = new File(path);
@@ -29,24 +26,32 @@ public class RansomwareFix {
 		if(filse == null) return;
 		for (File file : filse) {
 			if(file.isDirectory()) {
-				isReadmeDelete(file.getPath());
 				showFilesInDirRecursive(file.getPath());
+				isReadmeDelete(file.getPath());
 			}else if (file.getName().endsWith(".7z")) {
 				System.out.println("file : " + file);
 				File rescueFile = getRescueFile(file); 
 				if(rescueFile != null && rescueFile.exists()) {
-					System.out.println("move file : "+file);
-//					moveRescuFile(file, rescueFile);
-//					deleteRansomwareFile(file);
+					moveRescuFile(file, rescueFile);
 				}
 			}
 		}
 	}
 
 
+	// 복구파일 이동
+	private static void moveRescuFile(File file, File rescueFile) {
+		
+		File newFile = new File(file.getParent()+"/"+rescueFile.getName());
+		boolean success = rescueFile.renameTo(newFile);
+		if (success) {
+		    System.out.println("move newFile : "+newFile);
+		    file.delete();
+		}
+	}
+
 	// 복구파일 조회
 	private static File getRescueFile(File file) {
-		System.out.println(" > file : " + file);
 		
 		String fileName = file.getName().substring(0,file.getName().length()-EXTENTION.length());
 		String parantPath = file.getParentFile().toString();
