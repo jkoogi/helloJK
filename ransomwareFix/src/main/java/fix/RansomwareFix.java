@@ -14,82 +14,125 @@ public class RansomwareFix {
 	private static String DIR_PATH_RESCUE = "/share/external/DEV3301_1/restore1/share/CACHEDEV1_DATA/";
 	private static String EXTENTION = ".7z";
 	private static String README_FILE = "!!!READ_ME.txt";
+	private static String TYPE = "BOTH";
+	private static final Long ZERO = 0L;
+	
 	
 	public static void main(String[] args) {
 		
 		System.out.println("### RansomwareFix START ### ");
 		
-		if(args.length > 2 ) {
+		if (args.length > 1) {
 			
 			System.out.println("param set : "+args.length);
 			
 			DIR_PATH_BASE = args[0];
 			DIR_PATH_RESCUE = args[1];
-			if(args.length > 3) {
-				EXTENTION = args[2];
+			if (args.length >= 3) {
+				TYPE = args[2];
 			}
-		}else {
+			if (args.length >= 4) {
+				EXTENTION = args[3];
+			}
+		} else {
 			System.out.println("param is default.");
 		}
 		
 		System.out.println(" - DIR_PATH_BASE : "+DIR_PATH_BASE);
 		System.out.println(" - DIR_PATH_RESCUE : "+DIR_PATH_RESCUE);
+		System.out.println(" - TYPE : "+TYPE);
 		System.out.println(" - EXTENTION : "+EXTENTION);
+		System.out.println(" ------------------------------ ");
+		
+//		RunType[] arr = RunType.values();
+//		for (RunType rt : arr) {
+//			System.out.println("RunType - "+rt+"("+rt.getValue()+")");
+//		}
 		
 		File baseDir = new File(DIR_PATH_BASE);
-		showFilesInDirRecursive(baseDir.getPath());
-		
+		if (baseDir.exists()) {
+			if (TYPE.equals(RunType.BOTH.getValue()) || TYPE.equals(RunType.FIX.getValue() )) {
+				showFilesInDirRecursive(baseDir.getPath());
+			} else {
+				System.out.println("! Except Fix");
+			}
+			if (TYPE.equals(RunType.BOTH.getValue()) || TYPE.equals(RunType.LIST.getValue())) {
+				System.out.println(":: Ransomware File Cnt = "+findRansomwareList(baseDir.getPath()));
+			} else {
+				System.out.println("! Except List");
+			}
+		} else {
+			System.out.println("* baseDir is null");
+		}
 		System.out.println("### RansomwareFix END ###");
 	}
-
-	// 디렉토리 탐색
+	
+	// 디렉토리 탐색 - 파일이동
 	private static void showFilesInDirRecursive(String path) {
 		
 		File dir = new File(path);
 		File filse[] = dir.listFiles();
 		
-		if(filse == null) return;
+		if (filse == null) return;
 		for (File file : filse) {
-			if(file.isDirectory()) {
+			if (file.isDirectory()) {
 				
 				// root depth에 [.]로 시작하는 숨김폴더 제외
-				if(file.getPath().startsWith(DIR_PATH_BASE+".")) {
+				if (file.getPath().startsWith(DIR_PATH_BASE+".")) {
 					System.out.println(" - [~] hidden dir : "+file);
 					continue;
-				}else {
+				} else {
 					
 					showFilesInDirRecursive(file.getPath());
-					isReadmeDelete(file.getPath());
+					readmeDelete(file.getPath());
 					emptyRescueDirRemove(file.getPath());
 				}
 				
-			}else if (file.getName().endsWith(".7z")) {
+			} else if (file.getName().endsWith(".7z")) {
 				
 				System.out.println("file : " + file);
 				File rescueFile = getRescueFile(file); 
 				
-				if(rescueFile != null && rescueFile.exists()) {
+				if (rescueFile != null && rescueFile.exists()) {
 					System.out.println(" - rescueFile exists : "+rescueFile);
 					moveRescuFile(file, rescueFile);
-				}else {
+				} else {
 					System.out.println(" - rescueFile exists : NO");
 				}
 			}
 		}
 	}
 
+	// 디렉토리 탐색 - 감염파일 조회
+	private static long findRansomwareList(String path) {
+		File dir = new File(path);
+		File filse[] = dir.listFiles();
+		
+		if (filse == null) return ZERO;
+		long fileCnt = ZERO;
+		for (File file : filse) {
+			if (file.isDirectory()) {
+				fileCnt += findRansomwareList(file.getPath());
+			} else if (file.getName().endsWith(".7z")) {
+				System.out.println("[7z] "+file);
+				fileCnt++;
+			}
+		}
+		return fileCnt;
+	}
+
 	// 복구파일 이동 후 빈 복구디렉토리 삭제
 	private static void emptyRescueDirRemove(String path) {
 		
 		File rescueDir = new File(path.replace(DIR_PATH_BASE, DIR_PATH_RESCUE));
-		if(rescueDir.exists()) {
+		if (rescueDir.exists()) {
 			
 			File files[] = rescueDir.listFiles();
 			
-			if(files.length==0) {
-				if(rescueDir.delete()) {
+			if (files.length==0) {
+				if (rescueDir.delete()) {
 					System.out.println(" - remove rescue dir : "+rescueDir);
-				}else {
+				} else {
 					System.out.println(" - fail remove rescue dir : "+rescueDir);
 				}
 			}
@@ -133,7 +176,7 @@ public class RansomwareFix {
 	}
 
 	// 디렉토리에 7z파일이 없으면 ReadMe 파일 삭제 
-	private static void isReadmeDelete(String path) {
+	private static void readmeDelete(String path) {
 		
 		File checkDir = new File(path);
 		FilenameFilter filter = new FilenameFilter() {
@@ -145,9 +188,25 @@ public class RansomwareFix {
 		
 		File files[] = checkDir.listFiles(filter);
 		File readmeFile = new File(path+"/"+README_FILE);
-		if(files.length==0 && readmeFile.isFile()) {
+		if (files.length==0 && readmeFile.isFile()) {
 			System.out.println(">> delete ReadMe : "+readmeFile);
 			readmeFile.delete();
 		}
 	}
+}
+
+enum RunType {
+	FIX("1"), LIST("2"), BOTH("3");
+	
+	private final String value;
+
+	RunType(String value) {
+		this.value = value;
+	}
+	
+	public String getValue() {
+		return value;
+	}
+	
+	
 }
