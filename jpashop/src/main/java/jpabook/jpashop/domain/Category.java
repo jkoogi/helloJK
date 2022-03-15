@@ -36,9 +36,14 @@ public class Category {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "parent_id")
-	private Category parent_id;
+	private Category parentId;
 	
-	@OneToMany(mappedBy = "parent_id")
+	@OneToMany(mappedBy = "parentId")
 	private List<Category> child = new ArrayList<Category>();
-
+	
+	/* 연관관계 메서드 */
+	public void addChildCategory(Category child){
+		this.child.add(child);
+		child.setParentId(this);
+	}
 }
