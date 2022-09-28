@@ -18,9 +18,9 @@ public class Laboratory {
 	Result analyze(Sample sample) {
 		/* 대상소스 */
 //		if(microscope.isInorganic(sample)) {
-//			return Result.INORGANIC;
+//			return Result.INORGANIC;		//무기물
 //		}else {
-//			return analyzeOrganic(sample);
+//			return analyzeOrganic(sample);  //유기물
 //		}
 
 		/* 개선소스 */

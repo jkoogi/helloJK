@@ -16,11 +16,11 @@ import ex01우선정리부터.ex0104불표현식간소화.sub.OxygenTank;
  *  * &&가 항상 ||보다 먼저 평가된다
  */
 public class SpaceShip {
-	Crew crew;
-	FuelTank fuelTank;
-	Hull hull;
-	Navigator navigator;
-	OxygenTank oxygenTank;
+	Crew crew;				//승선인원
+	FuelTank fuelTank;		//연료통
+	Hull hull;				//선체
+	Navigator navigator;	//경로
+	OxygenTank oxygenTank;	//산소통
 	
 	boolean willCrewSurvive() {
 		/* 대상소스 */ // 낮은 수준의 각 세부 내용을 확인

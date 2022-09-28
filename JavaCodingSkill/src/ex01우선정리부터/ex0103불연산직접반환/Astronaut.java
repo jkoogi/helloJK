@@ -21,7 +21,7 @@ public class Astronaut {
 
 		/* 개선소스 */
 		// 1차소스 - boolean 을 반환시 
-//		return missions < 0 || name == null || name.trim().isEmpty();
+//		return  missions >= 0 && name != null && !name.trim().isEmpty();
 
 		/* 개선소스 */
 		// 2차소스 - 조건문이 세개 이상인 경우 간소화 검토
