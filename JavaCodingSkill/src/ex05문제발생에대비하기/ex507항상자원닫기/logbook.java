@@ -48,7 +48,7 @@ public class logbook {
 			}
 		}
 		
-		/* 컴파일러 처리 
+		/* 컴파일러가 이렇게 처리 해준다. 
 		 *  - try-with-resources 를 이용해 자원해제는 컴파일러가 하도록 하자.
 		 * */
 		DirectoryStream<Path> directoryStream = 

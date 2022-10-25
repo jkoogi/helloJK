@@ -6,8 +6,7 @@ import ex05문제발생에대비하기.ex505변수로원인노출.sub.MalformedM
 /**
  * 5.5 변수로 원인 노출
  * @author jkoogi
- * 1. 예외 : 필드아 메서드, 생성자를 갖는 클래스
- *  - 기계가 읽을 수 있는 방식으로 예외의 원인 표현  
+ * 1. 예외 : 필드와 메서드, 생성자를 갖는 클래스 *  - 기계가 읽을 수 있는 방식으로 예외의 원인 표현  
  *  > 중복코드(rawMessage) : 일관성취약 
  *  > 감춰진 정보(rawMessage > 예외 message에 매핑) : 접근성 취약
  */
@@ -47,7 +46,7 @@ public class TransmissionParser {
 //			throw new IllegalArgumentException(
 //					String.format("Exception number, but got '%s' in '%s'", 
 //							rawId,rawMessage), e);
-			/* 개선소스 */
+			/* 개선소스 - MalformedMessageException : 사용자예외 정의 */
 			throw new MalformedMessageException(
 					String.format("Exception number, but got '%s'", rawId),
 					rawMessage, e);

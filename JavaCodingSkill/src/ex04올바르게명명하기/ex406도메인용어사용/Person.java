@@ -60,3 +60,7 @@ public class Person { //대상소스
 				);
 	}
 }
+
+/* 
+ * active : 능동태, 적극적인,  활동적인 
+ * */

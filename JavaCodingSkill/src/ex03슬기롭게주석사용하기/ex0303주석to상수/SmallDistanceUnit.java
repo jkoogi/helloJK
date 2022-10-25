@@ -30,6 +30,7 @@ enum SmallDistanceUnit {
 	/* 개선소스 */
 	static final double INCHES_IN_CENTIMETERS = 2.54;
 	static final double CENTIMETER_IN_INCHES = 1/INCHES_IN_CENTIMETERS;
+	
 	static final int IDENTITY = 1;
 	
 	double getConversionRate(SmallDistanceUnit unit) {

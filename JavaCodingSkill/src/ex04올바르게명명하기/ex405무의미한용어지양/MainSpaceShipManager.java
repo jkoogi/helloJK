@@ -51,3 +51,10 @@ public class MainSpaceShipManager {
 	}
 }
 //4.4축약쓰지않기
+
+/* 
+ * Abstract : 추상적인
+ * Propulsion : 추진
+ * Route : 노선, 보내다
+ * invoke : (예를)들다, 언급하다
+ * */
