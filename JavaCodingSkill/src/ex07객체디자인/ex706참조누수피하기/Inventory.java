@@ -49,7 +49,7 @@ public class Inventory {
 	 *  > supplies 필드에 final 키워드를 선언해도 변경을 제한할 수 없음
 	 *  > 생성자에 null이 전달되면 NullPointException 발생
 	 * . Inventory 상태를 new ArrayList()로 생성한 리스트의 주소만 메모리로 등록하기 때문
-	 *  - inventory는 이 리스트로의 차조만 supplies 필드에 저장하고, getSupplies()를 통해 참조를 반환.
+	 *  - inventory는 이 리스트로의 참조만 supplies 필드에 저장하고, getSupplies()를 통해 참조를 반환.
 	 *  > Inventory는 내부 구조로의 참조를 게터를 통해 외부에 노출.
 	 *  
 	 *  * supplies를 외부에서 변경할 수 없도록 제어하고 싶을 경우.
@@ -60,7 +60,7 @@ public class Inventory {
 //		Inventory inventory = new Inventory(null);
 		
 		inventory.getSupplies().size(); // == 0
-		externalSupplies.add(new Supply("Apple"));
+		externalSupplies.add(new Supply("Apple"));//1
 		inventory.getSupplies().size(); // == 1
 		
 		inventory.getSupplies().add(new Supply("Banana"));
@@ -72,7 +72,7 @@ public class Inventory {
 	 *  . inventory 내부상태 안정성 확보
 	 *  . getSupplies() 가 반환한 리스트의 수정이 시도되면 UnsupportedOperationException 발생
 	 *  
-	 *  * 방어복사(defensive copying) : 전달된 자료구조를 재사용하는 대신 복사본을 만들어 제어함
+	 *  * 방어복사(defensive copying) : 전달된 자료구조를 재사용하는 대신 '복사본'을 만들어 제어함
 	 *   . 세터, 게터 둘 다 보호해야 함 (세터를 허용하지 않는 디자인 유도)
 	 * */
 	public static void main(String[] args) {
@@ -80,7 +80,7 @@ public class Inventory {
 		Inventory inventory = new Inventory(externalSupplies);
 		
 		inventory.getSupplies().size(); // == 0
-		externalSupplies.add(new Supply("Apple"));
+		externalSupplies.add(new Supply("Apple")); //1
 		inventory.getSupplies().size(); // == 0
 		
 		// UnsupportedOperationException

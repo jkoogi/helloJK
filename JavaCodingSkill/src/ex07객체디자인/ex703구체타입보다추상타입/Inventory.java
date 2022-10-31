@@ -9,6 +9,7 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Queue;
 import java.util.Set;
 import java.util.SortedMap;
 import java.util.SortedSet;
@@ -16,6 +17,7 @@ import java.util.Stack;
 import java.util.TreeSet;
 import java.util.Vector;
 
+import ex07객체디자인.ex703구체타입보다추상타입.sub.CargoShip;
 import ex07객체디자인.ex703구체타입보다추상타입.sub.Supply;
 
 
@@ -28,9 +30,10 @@ import ex07객체디자인.ex703구체타입보다추상타입.sub.Supply;
  *   stockUp() 메서드를 통해 생성한 Supply 객체들의 LinkedList를 반복처리
  */
 public class Inventory {
-	LinkedList<Supply> supplies = new LinkedList<>();
+	static CargoShip cargoShip;
+/* 대상소스 */	
+//	LinkedList<Supply> supplies = new LinkedList<>();
 
-	/* 대상소스 */	
 //	void stockUp(ArrayList<Supply> delivery) {
 //		supplies.addAll(delivery);
 //	}
@@ -55,13 +58,16 @@ public class Inventory {
 	 * . Inventory 변경시 다른부분에 영향
 	 * */
 //	Stack<Supply> delivery = cargoShip.unload();
-//	ArrayList<Supply> loadableDelivery = new ArrayList<>(delivery);
-//	inventory.stockUp(loadableDelivery);
+//	ArrayList<Supply> loadableDelivery = new ArrayList<>(delivery); // 형변환을 위한 임시 전환타입
+//	inventory.stockUp(loadableDelivery); // stockUP 메서드를 이용하여 ArrayList에 담긴 정보를 LinkedList에 형변환하여 전달
+//	inventory.getContaminatedSupplies();
 
 	/* 개선소스 
 	 * - Stack이 Collection이라 변환 없이 Stack을 받아서 처리할 수 있음
 	 * > ArrayList, Set, List 등 사용 가능
 	 * */
+	List<Supply> supplies = new LinkedList<>();
+	
 	void stockUp(Collection<Supply> delivery) {
 		supplies.addAll(delivery);
 	}
@@ -86,6 +92,15 @@ public class Inventory {
 	 *  - 제품은 정렬된 상태로 반환되지만, 내부적 리스트 구현은 알수 없음 
 	 *  > 코드의 유연성 증가
 	 * */
-//	Stack<Supply> delivery = cargoShip.unload();
-//	inventory.stockUp(delivery);
+	//
+	public static void main(String[] args) {
+		Inventory inventory = new Inventory();
+		Stack<Supply> delivery = cargoShip.unload();
+		inventory.stockUp(delivery);
+		inventory.getContaminatedSupplies();
+	}
 }
+
+/*
+ *  Contaminated : 오염된
+ */
