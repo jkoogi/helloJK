@@ -19,7 +19,7 @@ public class Inventory {
 	 *  > 순회하는 과정에서 몇가지 조건을 수행하는 코드로 이해하는데 직관적이지 않다.
 	 *  ! 무엇을 하는지, 루프와 조건, 변수 할당문, 메서드 호출 결과는 어떤지 등의 분석을 위해 좋은 이름과 주석이 필요함
 	 *  일반적인 관심사 : '무엇' ('어떻게'는 관심사가 아님) 
-	 *  * 한줄씩 읽을 수 밨게 없는 예제의 코드는 메서드의 의도를 흐림
+	 *  * 한줄씩 읽을 수 밖게 없는 예제의 코드는 메서드의 의도를 흐림
 	 * - 람다식은 '무엇'이 이루어지는지를 명시할 수 있지만, '어떻게'는 표현할 수 없음 : 간결하고 읽기 쉬운 코드
 	 * */
 //	long countDifferentKinds() {
@@ -27,7 +27,7 @@ public class Inventory {
 //		for (Supply supply : supplies) {
 //			if(supply.isUncontaminated()) {
 //				String name = supply.getName();
-//				if (!name.contains(name)) {
+//				if (!names.contains(name)) {
 //					names.add(name);
 //				}
 //			}

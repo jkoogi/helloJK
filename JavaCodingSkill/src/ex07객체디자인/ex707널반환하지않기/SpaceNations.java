@@ -36,7 +36,7 @@ public class SpaceNations {
 		/* 대상소스 */
 //		return null;
 		
-		/* 개선소스 1 - 널 객체 패넌(null object pattern)
+		/* 개선소스 1 - 널 객체 패턴(null object pattern)
 		 * - 객체에 실질적인 값이 없음을 명시적으로 표현한 객체 : UNKNOWN_NATION
 		 * > 프로그램 흐름을 방해하지 않으면서 예외 회피
 		 * . 호출부에서는 UNKNOWN_NATION 발생시 무시할지, 예외를 던질지 선택하여 처리할 수 있음
@@ -51,7 +51,7 @@ public class SpaceNations {
 		 * - 문제를 명확히 하여 개선을 유도
 		 * - 호출하는 쪽에서 명시적인 문제처리 로직 필요
 		 * */
-		throw new IllegalArgumentException();
+		throw new IllegalArgumentException("처리해라");
 		
 	}
 
